@@ -3,7 +3,6 @@
 
 #info-screen {
     @include mixins.flex-centered;
-    position: relative;
     padding: 10% 5% 6% 5%;
     background-color: variables.$transparent-black;
 }

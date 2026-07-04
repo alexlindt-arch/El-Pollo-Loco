@@ -42,10 +42,15 @@
     }
 }
 
-// Footer with the Impressum / privacy link.
+// Footer with the Impressum / privacy link – fixed in the corner so it does
+// not affect the centered game layout.
 #site-footer {
+    position: fixed;
+    bottom: 6px;
+    right: 12px;
+    z-index: 5;
     font-family: 'boogaloo', Arial, Helvetica, sans-serif;
-    font-size: 22px;
+    font-size: 15px;
 
     a {
         color: #a0220a;

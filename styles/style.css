@@ -144,7 +144,6 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   padding: 10% 5% 6% 5%;
   background-color: rgba(0, 0, 0, 0.878);
 }
@@ -640,8 +639,12 @@ Rotate-device overlay (portrait warning)
 Footer / Impressum link
 ---------------------------------------------------*/
 #site-footer {
+  position: fixed;
+  bottom: 6px;
+  right: 12px;
+  z-index: 5;
   font-family: "boogaloo", Arial, Helvetica, sans-serif;
-  font-size: 22px;
+  font-size: 15px;
 }
 
 #site-footer a {
