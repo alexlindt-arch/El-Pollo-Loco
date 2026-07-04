@@ -61,6 +61,7 @@ async function showLoader() {
  */
 function removeStartScreen() {
     removeElement('play-btn');
+    removeElement('site-footer');
     removeOpacity('play-btn-screen');
     removeOpacity('start-screen');
     setTimeout(() => {
