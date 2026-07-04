@@ -669,4 +669,29 @@ body.legal-page {
 #legal-content .back-link:hover {
   text-decoration: underline;
 }
+
+#legal-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #a0220a;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#legal-close:hover {
+  background-color: #ef8b10;
+}
 /*# sourceMappingURL=style.css.map */
