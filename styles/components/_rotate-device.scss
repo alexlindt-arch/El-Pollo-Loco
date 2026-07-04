@@ -1,0 +1,98 @@
+// Portrait warning overlay – asks the user to rotate the device to landscape.
+#rotate-device {
+    display: none;
+}
+
+@media (orientation: portrait) and (max-width: 1024px) {
+    #rotate-device {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        padding: 24px;
+        text-align: center;
+        background-color: #a0220a;
+        color: #ffffff;
+
+        img {
+            width: 90px;
+            height: auto;
+            animation: rotateHint 1.6s ease-in-out infinite;
+        }
+
+        span {
+            font-size: 28px;
+            max-width: 320px;
+        }
+    }
+}
+
+@keyframes rotateHint {
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-90deg);
+    }
+}
+
+// Footer with the Impressum / privacy link.
+#site-footer {
+    font-family: 'boogaloo', Arial, Helvetica, sans-serif;
+    font-size: 22px;
+
+    a {
+        color: #a0220a;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+// Legal page (Impressum / Datenschutz).
+body.legal-page {
+    justify-content: flex-start;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+#legal-content {
+    width: min(720px, 92vw);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 32px;
+    font-size: 20px;
+    color: #333333;
+
+    h2 {
+        color: #a0220a;
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    section {
+        margin-bottom: 24px;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 8px;
+        color: #a0220a;
+        font-size: 24px;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

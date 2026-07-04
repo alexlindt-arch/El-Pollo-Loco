@@ -567,4 +567,106 @@ canvas {
 
 .full-opacity {
   opacity: 1 !important;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*--------------------------------------------------
+Rotate-device overlay (portrait warning)
+---------------------------------------------------*/
+#rotate-device {
+  display: none;
+}
+
+@media (orientation: portrait) and (max-width: 1024px) {
+  #rotate-device {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+    text-align: center;
+    background-color: #a0220a;
+    color: #ffffff;
+  }
+  #rotate-device img {
+    width: 90px;
+    height: auto;
+    animation: rotateHint 1.6s ease-in-out infinite;
+  }
+  #rotate-device span {
+    font-size: 28px;
+    max-width: 320px;
+  }
+}
+
+@keyframes rotateHint {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-90deg);
+  }
+}
+
+/*--------------------------------------------------
+Footer / Impressum link
+---------------------------------------------------*/
+#site-footer {
+  font-family: "boogaloo", Arial, Helvetica, sans-serif;
+  font-size: 22px;
+}
+
+#site-footer a {
+  color: #a0220a;
+  text-decoration: none;
+}
+
+#site-footer a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*--------------------------------------------------
+Legal page (Impressum / Datenschutz)
+---------------------------------------------------*/
+body.legal-page {
+  justify-content: flex-start;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+#legal-content {
+  width: min(720px, 92vw);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 32px;
+  font-size: 20px;
+  color: #333333;
+}
+
+#legal-content h2 {
+  color: #a0220a;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+#legal-content section {
+  margin-bottom: 24px;
+}
+
+#legal-content .back-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #a0220a;
+  font-size: 24px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#legal-content .back-link:hover {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=style.css.map */
