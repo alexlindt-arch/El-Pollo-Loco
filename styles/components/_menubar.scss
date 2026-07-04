@@ -5,7 +5,7 @@
     @include mixins.flex-centered;
     gap: calc(0.045 * variables.$canvas-width);
     position: absolute;
-    top: calc(0.03 * variables.$canvas-width);
+    top: 4px !important;
     right: calc(0.03 * variables.$canvas-width);
     z-index: 3;
 }

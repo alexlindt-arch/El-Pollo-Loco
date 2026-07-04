@@ -111,7 +111,7 @@ canvas {
   align-items: center;
   gap: 32.4px;
   position: absolute;
-  top: 21.6px;
+  top: 4px !important;
   right: 21.6px;
   z-index: 3;
 }
