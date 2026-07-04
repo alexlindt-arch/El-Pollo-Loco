@@ -562,14 +562,14 @@ canvas {
 }
 @media (pointer: coarse) and (orientation: landscape) {
   body {
-    background: black !important;
+    background: url("../assets/img/desert-bg3.png") center/cover no-repeat !important;
     gap: unset;
   }
   h1 {
     display: none;
   }
   #main-screen-container {
-    background: black !important;
+    background: transparent !important;
     border-radius: unset;
   }
   canvas {

@@ -37,7 +37,7 @@
 
     @media (orientation:landscape) {
         body {
-            background: black !important;
+            background: url('../assets/img/desert-bg3.png') center/cover no-repeat !important;
             gap: unset;
         }
 
@@ -46,7 +46,7 @@
         }
 
         #main-screen-container {
-            background: black !important;
+            background: transparent !important;
             border-radius: unset;
         }
 
