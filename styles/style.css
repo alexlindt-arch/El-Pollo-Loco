@@ -16,6 +16,9 @@
 
 body {
   height: 100vh;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: manipulation;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +27,7 @@ body {
   background-image: url("../assets/img/desert-bg3.png");
   background-size: cover;
   font-family: "boogaloo", Arial, Helvetica, sans-serif;
-  font-size: 46px;
+  font-size: clamp(26px, 4.5vw, 46px);
   color: #a0220a;
 }
 
@@ -45,6 +48,7 @@ h1 {
 
 #main-screen-container {
   position: relative;
+  width: min(720px, 95vw, calc((100vh - 210px) * 1.5));
 }
 
 canvas {
@@ -327,8 +331,8 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 76.8px;
-  height: 76.8px;
+  width: clamp(52px, 8vw, 76.8px);
+  height: clamp(52px, 8vw, 76.8px);
   border-radius: 50%;
   color: #a0220a;
   background: linear-gradient(to bottom, #ef8b10, #ffc521);
@@ -360,9 +364,9 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 32px;
-  width: 684px;
-  font-size: 24px;
+  gap: clamp(10px, 2.5vw, 32px);
+  width: min(684px, 95vw);
+  font-size: clamp(15px, 2vw, 24px);
   background-color: rgba(255, 197, 33, 0.4);
   padding: 10px;
   border-radius: 10px;
@@ -378,21 +382,21 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
+  width: clamp(22px, 2.8vw, 32px);
+  height: clamp(22px, 2.8vw, 32px);
+  border-radius: 8px;
   color: #a0220a;
   background: linear-gradient(to bottom, #ffc521, #ef8b10);
   border: solid 2px;
-  font-size: 22px;
+  font-size: clamp(15px, 1.9vw, 22px);
 }
 .permanent-key img:not(.key-space) {
   width: 8px;
   height: 8px;
 }
 .permanent-key .key-space {
-  width: 24px;
-  height: 24px;
+  width: clamp(16px, 2.1vw, 24px);
+  height: clamp(16px, 2.1vw, 24px);
 }
 
 .permanent-key-jump {
@@ -481,34 +485,7 @@ canvas {
   bottom: 0;
 }
 
-@media only screen and (max-width: 720px) {
-  body {
-    font-size: 32px;
-  }
-  canvas,
-  .overlay-screen {
-    border-radius: unset;
-  }
-}
-@media only screen and (max-width: 720px) and (min-height: 480px) {
-  #main-screen-container {
-    width: 100%;
-  }
-  #permanent-key-info-container {
-    gap: 20px;
-    font-size: 18px;
-    width: 80%;
-  }
-  #permanent-key-info {
-    gap: 6;
-  }
-}
-@media only screen and (max-width: 360px) {
-  body {
-    font-size: 24px;
-  }
-}
-@media only screen and (max-height: 612px) {
+@media only screen and (max-height: 500px) and (max-width: 425px) {
   body {
     gap: unset;
   }
@@ -559,8 +536,14 @@ canvas {
   .desktop-only {
     display: none !important;
   }
+  #touch-keys {
+    opacity: 0.9;
+  }
+  #main-screen-container {
+    width: min(720px, 95vw, calc((100vh - 250px) * 1.5));
+  }
 }
-@media (pointer: coarse) and (orientation: landscape) {
+@media (pointer: coarse) and (orientation: landscape) and (max-width: 425px) {
   body {
     background: url("../assets/img/desert-bg3.png") center/cover no-repeat !important;
     gap: unset;
