@@ -1,0 +1,61 @@
+@use '../base/variables';
+
+@media only screen and (max-width: variables.$canvas-width) {
+    body {
+        font-size: 32px;
+    }
+
+    canvas,
+    .overlay-screen {
+        border-radius: unset;
+    }
+}
+
+@media only screen and (max-width: variables.$canvas-width) and (min-height: calc(variables.$canvas-height)) {
+    #main-screen-container {
+        width: 100%;
+    }
+
+    #permanent-key-info-container {
+        gap: 20px;
+        font-size: 18px;
+        width: 80%;
+    }
+
+    #permanent-key-info {
+        gap: 6;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    body {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-height: calc(variables.$canvas-height + 132px)) {
+    body {
+        gap: unset;
+    }
+
+    h1,
+    #permanent-key-info-container {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: calc(variables.$canvas-height)) and (min-width: variables.$canvas-width) {
+    body {
+        height: unset;
+        gap: unset;
+    }
+
+    canvas {
+        height: 100vh;
+        border-radius: unset;
+    }
+
+    .overlay-screen {
+        border-radius: unset;
+    }
+}

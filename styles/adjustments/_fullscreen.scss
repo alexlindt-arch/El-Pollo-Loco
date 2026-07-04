@@ -1,0 +1,16 @@
+#main-screen-container:fullscreen {
+    border-radius: unset;
+
+    canvas {
+        height: 100vh;
+        border-radius: unset;
+    }
+
+    .overlay-screen {
+        border-radius: unset;
+    }
+
+    #touch-keys {
+        bottom: 0;
+    }
+}

@@ -1,0 +1,68 @@
+@use '../base/variables';
+
+.mobile-only {
+    display: none !important;
+}
+
+.desktop-only {
+    display: flex !important;
+}
+
+@media (pointer: coarse) {
+    #play-btn img {
+        opacity: 0.7 !important;
+    }
+
+    .key {
+        border-radius: 50%;
+        background: variables.$loco-gradient-reversed;
+    }
+
+    .touch-key {
+        z-index: 1;
+        opacity: 1;
+    }
+
+    #permanent-key-info-container {
+        display: none;
+    }
+
+    .mobile-only {
+        display: flex !important;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    @media (orientation:landscape) {
+        body {
+            background: black !important;
+            gap: unset;
+        }
+
+        h1 {
+            display: none;
+        }
+
+        #main-screen-container {
+            background: black !important;
+            border-radius: unset;
+        }
+
+        canvas {
+            height: 100vh !important;
+            width: 100% !important;
+            border-radius: unset;
+            box-shadow: unset !important;
+        }
+
+        .overlay-screen {
+            border-radius: unset;
+        }
+
+        #touch-keys {
+            bottom: 0;
+        }
+    }
+}
