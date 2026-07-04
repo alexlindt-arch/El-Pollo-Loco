@@ -1,0 +1,10 @@
+@use '../base/variables';
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: variables.$loco-orange;
+    border-radius: 2px;
+}

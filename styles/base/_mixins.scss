@@ -1,0 +1,13 @@
+@use '../base/variables';
+
+@mixin flex-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin textcolor-gradient($colorA: variables.$loco-yellow, $colorB: variables.$loco-orange) {
+    background: linear-gradient(to bottom, $colorA, $colorB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
