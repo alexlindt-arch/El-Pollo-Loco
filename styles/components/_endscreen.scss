@@ -1,0 +1,64 @@
+@use '../base/variables';
+@use '../base/mixins';
+@use '../base/fonts';
+
+#end-screen-lost {
+    background-image: url('../assets/img/9_intro_outro_screens/game_over/game-over.png');
+    background-size: cover;
+    background-repeat: round;
+}
+
+#end-screen-won {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    font-size: calc(0.2 * variables.$canvas-height);
+
+    span {
+        @include mixins.textcolor-gradient();
+        text-shadow: -4px 4px 2px rgba(variables.$loco-red, 0.3);
+        z-index: 1;
+    }
+
+    #end-screen-circle {
+        width: calc(0.6 * variables.$canvas-height);
+        height: calc(0.6 * variables.$canvas-height);
+        border-radius: 50%;
+        box-shadow: 0px 0px 0px max(100vw, 100vh) rgba(0, 0, 0, 0.9);
+        margin-bottom: calc(0.05 * variables.$canvas-height);
+    }
+}
+
+#replay-btn-screen {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#replay-btn {
+    @include mixins.flex-centered;
+    border-radius: 10px;
+    color: variables.$loco-red;
+    background: variables.$loco-gradient;
+    border: solid 2px;
+    outline: none;
+    font-family: 'boogaloo', Arial, Helvetica, sans-serif;
+    font-size: calc(0.056 * variables.$canvas-width);
+    padding: 0px 2.22%;
+    margin-bottom: 1.11%;
+    box-shadow: 0px 1px 4px 2px rgba(variables.$loco-yellow, 0.3);
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+
+    &:hover {
+        background: variables.$loco-gradient-reversed;
+        transition: all 250ms ease-in-out;
+    }
+
+    &:active {
+        background: rgba(variables.$loco-red, 0.5);
+        transition: all 250ms ease-in-out;
+    }
+}

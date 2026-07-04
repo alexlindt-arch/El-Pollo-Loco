@@ -1,0 +1,51 @@
+@use '../base/variables';
+@use '../base/mixins';
+
+#touch-keys {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: -100px;
+    padding: calc(0.015 * variables.$canvas-width) calc(0.045 * variables.$canvas-width);
+    width: 100%;
+    opacity: 0.2;
+
+    div {
+        @include mixins.flex-centered;
+        gap: calc(0.05 * variables.$canvas-width);
+    }
+}
+
+.touch-key {
+    @include mixins.flex-centered;
+    width: calc(0.16 * variables.$canvas-height);
+    height: calc(0.16 * variables.$canvas-height);
+    border-radius: 50%;
+    color: variables.$loco-red;
+    background: variables.$loco-gradient-reversed;
+    border: solid 2px;
+    font-size: calc(0.045 * variables.$canvas-width);
+    z-index: -1;
+    opacity: 0;
+    cursor: pointer;
+
+    img:not(.key-bottle) {
+        width: 33.33%;
+        height: 33.33%;
+    }
+
+    &:hover {
+        background: variables.$loco-gradient;
+    }
+
+    &:active {
+        background: rgba(variables.$loco-red, 0.5);
+    }
+}
+
+.key-bottle {
+    width: 84% !important;
+    height: 60% !important;
+    rotate: -30deg;
+}

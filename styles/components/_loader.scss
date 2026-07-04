@@ -1,0 +1,51 @@
+@use '../base/variables';
+@use '../base/mixins';
+
+.loader-container {
+    @include mixins.flex-centered;
+    background-image: url('../assets/img/5_background/layers/air.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 5;
+    opacity: 1;
+}
+
+#loader-img {
+    border-left: calc(0.02 * variables.$canvas-width) dashed variables.$loco-red;
+    border-right: calc(0.02 * variables.$canvas-width) dashed variables.$loco-orange;
+    border-radius: 50%;
+    background-image: url('../assets/img/6_salsa_bottle/salsa_bottle.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 75%;
+    animation: spin 1000ms linear infinite, zoom-in-out 500ms ease-in-out;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes zoom-in-out {
+    0% {
+        width: 0;
+        height: 0;
+        border-left-width: 0;
+        border-right-width: 0;
+    }
+
+    100% {
+        width: 50%;
+        height: 75%;
+        border-left-width: calc(0.02 * variables.$canvas-width);
+        border-right-width: calc(0.02 * variables.$canvas-width);
+    }
+}

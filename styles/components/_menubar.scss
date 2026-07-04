@@ -1,0 +1,35 @@
+@use '../base/variables';
+@use '../base/mixins';
+
+#menu-bar {
+    @include mixins.flex-centered;
+    gap: calc(0.045 * variables.$canvas-width);
+    position: absolute;
+    top: calc(0.03 * variables.$canvas-width);
+    right: calc(0.03 * variables.$canvas-width);
+    z-index: 3;
+}
+
+#sound-btn,
+#info-btn,
+#fullscreen-btn {
+    @include mixins.flex-centered;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+
+    img {
+        width: calc(0.045 * variables.$canvas-width);
+        opacity: 0.8;
+    }
+
+    &:hover img {
+        opacity: 1;
+    }
+}
+
+#fullscreen-btn img {
+    width: calc(0.04 * variables.$canvas-width);
+}

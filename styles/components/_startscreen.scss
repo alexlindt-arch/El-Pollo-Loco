@@ -1,0 +1,38 @@
+@use '../base/variables';
+@use '../base/mixins';
+
+#start-screen {
+    background-image: url('../assets/img/9_intro_outro_screens/start/startscreen_1big3to2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+#play-btn-screen {
+    @include mixins.flex-centered;
+    z-index: 1;
+
+    &:hover #play-btn img {
+        opacity: 0.5;
+        transition: all 250ms ease-in-out;
+    }
+}
+
+#play-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+
+    img {
+        width: calc(0.4 * variables.$canvas-width);
+        opacity: 0;
+        transition: all 250ms ease-in-out;
+    }
+
+    &:hover img {
+        opacity: 0.8 !important;
+        transition: all 250ms ease-in-out;
+    }
+}

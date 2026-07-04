@@ -1,0 +1,81 @@
+@use '../base/variables';
+@use '../base/mixins';
+
+#info-screen {
+    @include mixins.flex-centered;
+    padding: 10% 5% 6% 5%;
+    background-color: variables.$transparent-black;
+}
+
+#info-content {
+    display: flex;
+    flex-direction: column;
+    color: variables.$loco-orange;
+    font-size: calc(0.06 * variables.$canvas-height);
+    overflow: auto;
+    height: inherit;
+    z-index: 3;
+    padding-right: 16px;
+
+    section {
+        margin-bottom: 10%;
+    }
+
+    h2 {
+        margin-bottom: 5%;
+        color: variables.$loco-yellow;
+    }
+
+    .icon-td {
+        @include mixins.flex-centered;
+        height: calc(0.0888 * variables.$canvas-width);
+        padding-right: calc(0.111 * variables.$canvas-width);
+        padding-left: calc(0.0111 * variables.$canvas-width);
+    }
+}
+
+.key {
+    @include mixins.flex-centered;
+    width: calc(0.1 * variables.$canvas-height);
+    height: calc(0.1 * variables.$canvas-height);
+    border-radius: 10px;
+    color: variables.$loco-red;
+    background: variables.$loco-gradient;
+    border: solid 2px;
+    font-size: calc(0.045 * variables.$canvas-width);
+
+    img:not(.key-space) {
+        width: 33.33%;
+        height: 33.33%;
+    }
+
+    .key-space {
+        width: 75%;
+        height: 75%;
+    }
+}
+
+#key-separator {
+    color: variables.$loco-red;
+    margin: 0 calc(0.033 * variables.$canvas-height);
+    font-size: calc(0.1 * variables.$canvas-height);
+}
+
+#sound-description-text {
+    margin-bottom: calc(0.033 * variables.$canvas-height);
+}
+
+.sound-option {
+    @include mixins.flex-centered;
+    width: calc(0.1 * variables.$canvas-height);
+    height: calc(0.1 * variables.$canvas-height);
+    border-radius: 50%;
+    color: variables.$loco-red;
+    background: variables.$loco-gradient;
+    border: solid 2px;
+
+    img {
+        width: 60%;
+        height: 60%;
+    }
+}

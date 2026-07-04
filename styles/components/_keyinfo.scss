@@ -1,0 +1,50 @@
+@use '../base/variables';
+@use '../base/mixins';
+@use '../components/infoscreen';
+
+#permanent-key-info-container {
+    @include mixins.flex-centered;
+    flex-wrap: wrap;
+    gap: 32px;
+    width: calc(0.95 * variables.$canvas-width);
+    font-size: 24px;
+    background-color: rgba(variables.$loco-yellow, 0.4);
+    padding: 10px;
+    border-radius: 10px;
+
+    .permanent-key-info {
+        @include mixins.flex-centered;
+        gap: 10px;
+    }
+}
+
+.permanent-key {
+    @include mixins.flex-centered;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    color: variables.$loco-red;
+    background: variables.$loco-gradient;
+    border: solid 2px;
+    font-size: 22px;
+
+    img:not(.key-space) {
+        width: 8px;
+        height: 8px
+    }
+
+    .key-space {
+        width: 24px;
+        height: 24px
+    }
+}
+
+.permanent-key-jump {
+    @include mixins.flex-centered;
+}
+
+#permanent-key-separator {
+    color: variables.$loco-red;
+    margin: 0 8px;
+    font-size: 24px;
+}
