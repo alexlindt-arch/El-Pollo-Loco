@@ -19,8 +19,8 @@
 
 .touch-key {
     @include mixins.flex-centered;
-    width: calc(0.16 * variables.$canvas-height);
-    height: calc(0.16 * variables.$canvas-height);
+    width: clamp(52px, 8vw, 76.8px);
+    height: clamp(52px, 8vw, 76.8px);
     border-radius: 50%;
     color: variables.$loco-red;
     background: variables.$loco-gradient-reversed;

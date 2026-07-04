@@ -9,6 +9,9 @@
 
 body {
     height: 100vh;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +20,7 @@ body {
     background-image: url('../assets/img/desert-bg3.png');
     background-size: cover;
     font-family: 'boogaloo', Arial, Helvetica, sans-serif;
-    font-size: 46px;
+    font-size: clamp(26px, 4.5vw, 46px);
     color: variables.$loco-red;
 }
 

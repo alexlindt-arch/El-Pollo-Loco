@@ -1,39 +1,6 @@
 @use '../base/variables';
 
-@media only screen and (max-width: variables.$canvas-width) {
-    body {
-        font-size: 32px;
-    }
-
-    canvas,
-    .overlay-screen {
-        border-radius: unset;
-    }
-}
-
-@media only screen and (max-width: variables.$canvas-width) and (min-height: calc(variables.$canvas-height)) {
-    #main-screen-container {
-        width: 100%;
-    }
-
-    #permanent-key-info-container {
-        gap: 20px;
-        font-size: 18px;
-        width: 80%;
-    }
-
-    #permanent-key-info {
-        gap: 6;
-    }
-}
-
-@media only screen and (max-width: 360px) {
-    body {
-        font-size: 24px;
-    }
-}
-
-@media only screen and (max-height: calc(variables.$canvas-height + 132px)) {
+@media only screen and (max-height: 500px) and (max-width: 425px) {
     body {
         gap: unset;
     }

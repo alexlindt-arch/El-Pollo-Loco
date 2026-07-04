@@ -9,10 +9,10 @@
 @use 'components/touchkeys';
 @use 'components/keyinfo';
 @use 'components/loader';
-@use 'components/rotate-device';
 
 @use 'adjustments/fullscreen';
 @use 'adjustments/resize';
 @use 'adjustments/touchdevice';
 
 @use 'base/show-hide';
+@use 'components/rotate-device';

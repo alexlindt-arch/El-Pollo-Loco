@@ -2,6 +2,7 @@
 
 #main-screen-container {
     position: relative;
+    width: min(720px, 95vw, calc((100vh - 210px) * 1.5));
 }
 
 canvas {
