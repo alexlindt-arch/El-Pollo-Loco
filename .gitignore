@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+.thumbnail
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# SCSS build artifacts
+styles/*.css.map
+.sass-cache/
