@@ -543,6 +543,18 @@ canvas {
     width: min(720px, 95vw, calc((100vh - 250px) * 1.5));
   }
 }
+@media (pointer: coarse) and (min-width: 769px) {
+  #permanent-key-info-container {
+    display: flex;
+  }
+  #touch-keys {
+    display: none;
+  }
+  #main-screen-container {
+    width: min(720px, 95vw, calc((100vh - 210px) * 1.5));
+    margin-bottom: 0;
+  }
+}
 @media (pointer: coarse) and (orientation: landscape) and (max-width: 425px) {
   body {
     background: url("../assets/img/desert-bg3.png") center/cover no-repeat !important;
