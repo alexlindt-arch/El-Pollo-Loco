@@ -9,19 +9,15 @@
 
 #info-close {
     position: absolute;
-    top: 36px;
-    right: 44px;
+    top: 12px;
+    left: 16px;
     z-index: 4;
-    width: 40px;
-    height: 40px;
-    @include mixins.flex-centered;
     border: none;
-    border-radius: 50%;
-    background: variables.$loco-gradient;
+    background: none;
     color: variables.$loco-red;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 28px;
-    line-height: 1;
+    font-family: 'boogaloo', Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    text-decoration: none;
     cursor: pointer;
 
     &:hover {
