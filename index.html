@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Pollo Loco</title>
+
+    <link rel="shortcut icon" href="assets/img/favicon_cactus.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="js/global-constants.js"></script>
+    <script src="classes/drawable-object.class.js"></script>
+    <script src="classes/movable-object.class.js"></script>
+    <script src="classes/character.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
+    <script src="classes/baby-chicken.class.js"></script>
+    <script src="classes/endboss.class.js"></script>
+    <script src="classes/cloud.class.js"></script>
+    <script src="classes/world.class.js"></script>
+    <script src="classes/background-object.class.js"></script>
+    <script src="classes/status-bar.class.js"></script>
+    <script src="classes/status-bar-health.class.js"></script>
+    <script src="classes/status-bar-coins.class.js"></script>
+    <script src="classes/status-bar-bottles.class.js"></script>
+    <script src="classes/status-bar-endboss.class.js"></script>
+    <script src="classes/thrown-object.class.js"></script>
+    <script src="classes/collectable-object.class.js"></script>
+    <script src="classes/collectable-bottle.class.js"></script>
+    <script src="classes/collectable-coin.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="js/levels/level1.js"></script>
+    <script src="js/load-audio.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/touch-device.js"></script>
+    <script src="js/keys.js"></script>
+    <script src="js/menubar.js"></script>
+    <script src="js/show-hide.js"></script>
+    <script src="js/resize.js"></script>
+</head>
+
+<body onload="init()">
+    <h1>El Pollo Loco</h1>
+
+    <div id="main-screen-container">
+        <div id="loader" class="loader-container overlay-screen d-none">
+            <div id="loader-img" class="loader"></div>
+        </div>
+
+        <canvas id="canvas" width="720" height="480"></canvas>
+
+        <div id="start-screen" class="overlay-screen full-opacity">
+        </div>
+
+        <div id="play-btn-screen" class="overlay-screen full-opacity">
+            <button id="play-btn" onclick="startGame()">
+                <img id="play-btn-img" src="assets/img/play.png">
+            </button>
+        </div>
+
+        <div id="menu-bar">
+            <button id="sound-btn" onclick="toggleSoundAndMusic()">
+                <img id="sound-btn-icon" src="assets/img/sounds-and-music.png">
+            </button>
+            <button id="info-btn" onclick="toggleGameInfo()">
+                <img id="info-btn-icon" src="assets/img/info.png">
+            </button>
+            <button id="fullscreen-btn" onclick="toggleFullscreen()">
+                <img id="fullscreen-btn-icon" src="assets/img/fullscreen.png">
+            </button>
+        </div>
+
+        <div id="info-screen" class="overlay-screen">
+            <div id="info-content">
+                <section>
+                    <h2>Story</h2>
+                    <p>
+                        Somewhere in a Mexican desert, the brave PEPE PELIGROSO is confronted with a horde of
+                        strangely upset
+                        chickens. According to rumors, they have tasted a mysterious salsa sauce made from secret
+                        special
+                        ingredients, which caused them to lose their minds.
+                    </p>
+                    <p>
+                        Help Pepe make his way through the desert.
+                        Along you may find SALSA BOTTLES lying around that you can use for defense. You should
+                        also collect as many COINS as possible, they may refresh your energy and they sparkle
+                        lovely in the sunlight.
+                    </p>
+                    <p>
+                        But beware: stories have been told about one insane,
+                        aggressive psycho chicken roaming nearby, which is claimed to be bigger than anything ever
+                        encountered: "EL POLLO LOCO"...
+                    </p>
+                </section>
+
+                <section>
+                    <h2>How To Play</h2>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="key">
+                                        <img src="assets/img/key-right.png">
+                                    </div>
+                                </td>
+                                <td><span>Move Right</span></td>
+                            </tr>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="key">
+                                        <img src="assets/img/key-left.png">
+                                    </div>
+                                </td>
+                                <td><span>Move Left</span></td>
+                            </tr>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="key desktop-only">
+                                        <img class="key-space" src="assets/img/key-space.png">
+                                    </div>
+                                    <span id="key-separator" class="desktop-only">/</span>
+                                    <div class="key desktop-only">
+                                        <img src="assets/img/key-up.png">
+                                    </div>
+                                    <div class="key mobile-only">
+                                        <img src="assets/img/key-up.png">
+                                    </div>
+                                </td>
+                                <td><span>Jump</span></td>
+                            </tr>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="key desktop-only">
+                                        D
+                                    </div>
+                                    <div class="key mobile-only">
+                                        <img class="key-bottle" src="assets/img/key-bottle.png">
+                                    </div>
+                                </td>
+                                <td><span>Throw Bottles</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Sound Options</h2>
+                    <p id="sound-description-text">Click on the sound icon above to switch between the following
+                        options:
+                    </p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="sound-option">
+                                        <img src="assets/img/sounds-and-music.png">
+                                    </div>
+                                </td>
+                                <td><span>Play Sounds And Music</span></td>
+                            </tr>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="sound-option">
+                                        <img src="assets/img/sounds-without-music.png">
+                                    </div>
+                                </td>
+                                <td><span>Play Sounds Only (No Music)</span></td>
+                            </tr>
+                            <tr>
+                                <td class="icon-td">
+                                    <div class="sound-option">
+                                        <img src="assets/img/sounds-off.png">
+                                    </div>
+                                </td>
+                                <td><span>Mute Sounds And Music</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+
+        <div id="end-screen-lost" class="overlay-screen"></div>
+
+        <div id="end-screen-won" class="overlay-screen">
+            <span>YOU WON!</span>
+            <div id="end-screen-circle"></div>
+        </div>
+
+        <div id="replay-btn-screen" class="overlay-screen d-none">
+            <button id="replay-btn" onclick="restartGame()">
+                REPLAY
+            </button>
+        </div>
+
+        <div id="touch-keys" class="d-none full-opacity">
+            <div id="touch-keys-lefthand">
+                <button id="touch-key-left" class="touch-key" onmousedown="keyboard.LEFT=true"
+                    onmouseup="keyboard.LEFT=false">
+                    <img src="assets/img/key-left.png">
+                </button>
+                <button id="touch-key-right" class="touch-key">
+                    <img src="assets/img/key-right.png">
+                </button>
+            </div>
+
+            <div id="touch-keys-righthand">
+                <button id="touch-key-jump" class="touch-key">
+                    <img src="assets/img/key-up.png">
+                </button>
+                <button id="touch-key-throw" class="touch-key">
+                    <img class="key-bottle" src="assets/img/key-bottle.png">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="permanent-key-info-container">
+        <div class="permanent-key-info">
+            <div class="permanent-key">
+                <img src="assets/img/key-left.png">
+            </div>
+            <span>Move Left</span>
+        </div>
+        <div class="permanent-key-info">
+            <div class="permanent-key">
+                <img src="assets/img/key-right.png">
+            </div>
+            <span>Move Right</span>
+        </div>
+        <div class="permanent-key-info">
+            <div class="permanent-key-jump">
+                <div class="permanent-key">
+                    <img class="key-space" src="assets/img/key-space.png">
+                </div>
+                <span id="permanent-key-separator">/</span>
+                <div class="permanent-key">
+                    <img src="assets/img/key-up.png">
+                </div>
+            </div>
+            <span>Jump</span>
+        </div>
+        <div class="permanent-key-info">
+            <div class="permanent-key">
+                D
+            </div>
+            <span>Throw Bottles</span>
+        </div>
+    </div>
+</body>
+
+</html>
