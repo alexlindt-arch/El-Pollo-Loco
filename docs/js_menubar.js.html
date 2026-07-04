@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/menubar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/menubar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*--------------------------------------------------
+Sound
+---------------------------------------------------*/
+/**
+ * Toggles sound and music settings between 'on' and 'off'.
+ * If both music and sound are on, music will be turned off.
+ * If only sound is on, it will be turned off.
+ * If both is off, it will be turned on. 
+ * The updated settings are saved to local storage.
+ */
+function toggleSoundAndMusic() {
+    if (musicIsOn) {
+        musicIsOn = false;
+    }
+    else if (soundIsOn) {
+        soundIsOn = false;
+    }
+    else {
+        musicIsOn = true;
+        soundIsOn = true;
+    }
+    setSoundIcon();
+    saveSoundSettingToLocalStorage();
+}
+
+
+/**
+ * Sets the sound icon image based on the current sound and music settings.
+ */
+function setSoundIcon() {
+    const soundIcon = document.getElementById('sound-btn-icon');
+    if (musicIsOn) {
+        soundIcon.src = 'assets/img/sounds-and-music.png';
+    }
+    else if (soundIsOn) {
+        soundIcon.src = 'assets/img/sounds-without-music.png';
+    }
+    else {
+        soundIcon.src = 'assets/img/sounds-off.png';
+    }
+}
+
+
+/*--------------------------------------------------
+Info
+---------------------------------------------------*/
+/**
+ * Toggles the game info screen along with other elements (touch keys, end screen, play button) 
+ * that have to hide when info screen is displayed.
+ */
+function toggleGameInfo() {
+    document.getElementById('info-screen').classList.toggle('full-opacity');
+    document.getElementById('touch-keys').classList.toggle('full-opacity');
+    if (gameIsRunning) return;
+
+    if (gameIsLost) {
+        toggleEndScreen('end-screen-lost');
+    }
+    else if (gameIsWon) {
+        toggleEndScreen('end-screen-won');
+    }
+    else {// game has not been started
+        document.getElementById('play-btn').classList.toggle('d-none');
+    }
+}
+
+
+/**
+ * Toggles the visibility of an end screen (either 'game lost' or 'game won' screen)
+ * and the replay button screen. It also manages the zIndex of the replay button screen.
+ * @param {string} screenId - The ID of the end screen to be toggled.
+ */
+function toggleEndScreen(screenId) {
+    document.getElementById(screenId).classList.toggle('full-opacity');
+    document.getElementById('replay-btn-screen').classList.toggle('full-opacity');
+    document.getElementById('replay-btn-screen').style.zIndex = (+document.getElementById('replay-btn-screen').style.zIndex + 1) % 2;
+}
+
+
+/*--------------------------------------------------
+Fullscreen
+---------------------------------------------------*/
+/**
+ * Toggles fullscreen mode by either entering or exiting fullscreen.
+ * After toggling, it resizes the canvas content to fit the new screen size.
+ */
+function toggleFullscreen() {
+    if (fullscreenIsActive) {
+        closeFullscreen();
+    } else {
+        openFullscreen();
+    }
+    resizeCanvasContent();
+    fullscreenIsActive = !fullscreenIsActive;
+}
+
+
+/**
+ * Requests the browser to enter fullscreen mode for the 'main-screen-container' element.
+ * It also updates the fullscreen button icon accordingly.
+ */
+function openFullscreen() {
+    let element = document.getElementById('main-screen-container');
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.webkitRequestFullscreen) { /* Safari */
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { /* IE11 */
+        element.msRequestFullscreen();
+    }
+
+    document.getElementById('fullscreen-btn-icon').src = 'assets/img/fullscreen_exit.png';
+}
+
+
+/**
+ * Exits fullscreen mode if the page is currently in fullscreen.
+ * It also updates the fullscreen button icon accordingly.
+ */
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+    }
+
+    document.getElementById('fullscreen-btn-icon').src = 'assets/img/fullscreen.png';
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BabyChicken.html">BabyChicken</a></li><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CollectableBottle.html">CollectableBottle</a></li><li><a href="CollectableCoin.html">CollectableCoin</a></li><li><a href="CollectableObject.html">CollectableObject</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="StatusBarBottles.html">StatusBarBottles</a></li><li><a href="StatusBarCoins.html">StatusBarCoins</a></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a></li><li><a href="StatusBarHealth.html">StatusBarHealth</a></li><li><a href="ThrownObject.html">ThrownObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aKeyIsPressed">aKeyIsPressed</a></li><li><a href="global.html#addOpacity">addOpacity</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearStoppableIntervals">clearStoppableIntervals</a></li><li><a href="global.html#closeFullscreen">closeFullscreen</a></li><li><a href="global.html#createBackgroundObjectsForLevel1">createBackgroundObjectsForLevel1</a></li><li><a href="global.html#getCanvasHeight">getCanvasHeight</a></li><li><a href="global.html#getCanvasWidth">getCanvasWidth</a></li><li><a href="global.html#handleTouchKeys">handleTouchKeys</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#initLevelBackground">initLevelBackground</a></li><li><a href="global.html#initLevelCollectableObjects">initLevelCollectableObjects</a></li><li><a href="global.html#initLevelEnemies">initLevelEnemies</a></li><li><a href="global.html#initWorld">initWorld</a></li><li><a href="global.html#isMobileDevice">isMobileDevice</a></li><li><a href="global.html#isTouchDevice">isTouchDevice</a></li><li><a href="global.html#isTouchDeviceInLandscapeMode">isTouchDeviceInLandscapeMode</a></li><li><a href="global.html#loadSoundSettingFromLocalStorage">loadSoundSettingFromLocalStorage</a></li><li><a href="global.html#openFullscreen">openFullscreen</a></li><li><a href="global.html#preloadAudioElements">preloadAudioElements</a></li><li><a href="global.html#provideTouchKeysForMobileDevices">provideTouchKeysForMobileDevices</a></li><li><a href="global.html#removeElement">removeElement</a></li><li><a href="global.html#removeEndScreen">removeEndScreen</a></li><li><a href="global.html#removeLoaderWhenAllImagesAreLoaded">removeLoaderWhenAllImagesAreLoaded</a></li><li><a href="global.html#removeOpacity">removeOpacity</a></li><li><a href="global.html#removeStartScreen">removeStartScreen</a></li><li><a href="global.html#resizeCanvasContent">resizeCanvasContent</a></li><li><a href="global.html#resizeEndScreen">resizeEndScreen</a></li><li><a href="global.html#resizeFullscreenIcon">resizeFullscreenIcon</a></li><li><a href="global.html#resizeInfoIcon">resizeInfoIcon</a></li><li><a href="global.html#resizeInfoScreen">resizeInfoScreen</a></li><li><a href="global.html#resizeInfoScreenIcons">resizeInfoScreenIcons</a></li><li><a href="global.html#resizeInfoScreenKeys">resizeInfoScreenKeys</a></li><li><a href="global.html#resizeInfoScreenSoundOptions">resizeInfoScreenSoundOptions</a></li><li><a href="global.html#resizeMenuBar">resizeMenuBar</a></li><li><a href="global.html#resizePlayButton">resizePlayButton</a></li><li><a href="global.html#resizeReplayButton">resizeReplayButton</a></li><li><a href="global.html#resizeSoundIcon">resizeSoundIcon</a></li><li><a href="global.html#resizeTouchKeys">resizeTouchKeys</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#saveSoundSettingToLocalStorage">saveSoundSettingToLocalStorage</a></li><li><a href="global.html#setAllAudioElementsToBeginning">setAllAudioElementsToBeginning</a></li><li><a href="global.html#setSoundIcon">setSoundIcon</a></li><li><a href="global.html#setStartPointsForClouds">setStartPointsForClouds</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#synchronizeTouchKeyWithKeyboardKey">synchronizeTouchKeyWithKeyboardKey</a></li><li><a href="global.html#synchronizeTouchendWithKeyup">synchronizeTouchendWithKeyup</a></li><li><a href="global.html#synchronizeTouchstartWithKeydown">synchronizeTouchstartWithKeydown</a></li><li><a href="global.html#toggleEndScreen">toggleEndScreen</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleGameInfo">toggleGameInfo</a></li><li><a href="global.html#toggleSoundAndMusic">toggleSoundAndMusic</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Nov 16 2023 21:42:53 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

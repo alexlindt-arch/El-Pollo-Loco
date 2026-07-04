@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/game.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/game.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let canvas;
+let world;
+let keyboard = new Keyboard();
+let fullscreenIsActive = false;
+let musicIsOn = true;
+let soundIsOn = true;
+let intervalIds = [];
+let gameIsRunning = false;
+let gameIsLost = false;
+let gameIsWon = false;
+
+
+/**
+ * Initializes the game by loading sound settings from local storage,
+ * setting sound icons, resizing canvas content, and preloading audio elements.
+ * @returns {Promise&lt;void>} A Promise that resolves when all initialization tasks are complete.
+ */
+async function init() {
+    await loadSoundSettingFromLocalStorage();
+    setSoundIcon();
+    resizeCanvasContent();
+    preloadAudioElements();
+}
+
+
+/*--------------------------------------------------
+Start / Restart
+---------------------------------------------------*/
+/**
+ * Starts the game by removing the start screen, initializing the level and world,
+ * providing touch keys for mobile devices, and setting the gameIsRunning flag to true.
+ * @returns {Promise&lt;void>} A Promise that resolves when the game is started.
+ */
+async function startGame() {
+    try {
+        await showLoader();
+        removeStartScreen();
+        await Promise.all([initLevel(), initWorld()]); // Simulate asynchronous operations using Promises
+        provideTouchKeysForMobileDevices();
+        gameIsRunning = true;
+    } catch (error) {
+        console.error("An error occurred while starting the game:", error);
+    } finally {
+        removeLoaderWhenAllImagesAreLoaded(); // Ensure that the loader element is removed, even if there's an error, but only when all relevant images are loaded
+    }
+}
+
+
+/**
+ * Shows the loading screen with a loader animation (CSS).
+ * @returns {Promise&lt;void>} A Promise that resolves after a short delay to show at least a bit of the loading animation.
+ */
+async function showLoader() {
+    showElement('loader');
+    await new Promise((resolve) => setTimeout(resolve, 500));
+}
+
+
+/**
+ * Removes the start screen elements to hide the start screen.
+ */
+function removeStartScreen() {
+    removeElement('play-btn');
+    removeOpacity('play-btn-screen');
+    removeOpacity('start-screen');
+    setTimeout(() => {
+        removeElement('start-screen');
+    }, 500);
+}
+
+
+/**
+ * Initializes the world by getting the canvas element and creating a new World instance.
+ */
+async function initWorld() {
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+}
+
+
+/**
+ * Removes the loader element when all start images are loaded in the world.
+ */
+function removeLoaderWhenAllImagesAreLoaded() {
+    let checkLoading = setInterval(() => {
+        world.checkIfStartImagesAreLoaded();
+        if (world.startImagesAreLoaded) {
+            clearInterval(checkLoading);
+            removeElement('loader');
+        }
+    }, 50);
+}
+
+
+/**
+ * Restarts the game by clearing all intervals, resetting audio elements, removing end screen,
+ * and starting the game again with `startGame()` function.
+ */
+function restartGame() {
+    clearAllIntervals();
+    intervalIds = [];
+    world.gameLost_music.pause();
+    world.gameWon_music.pause();
+    setAllAudioElementsToBeginning();
+    removeEndScreen();
+    startGame();
+    gameIsLost = false;
+    gameIsWon = false;
+}
+
+
+/**
+ * Removes the end screen (either "game lost" or "game won" screen).
+ * @param {string} endScreenId - The id of the end screen element to be removed.
+ */
+function removeEndScreen() {
+    const endScreenId = gameIsLost ? 'end-screen-lost' : 'end-screen-won';
+
+    document.getElementById('replay-btn-screen').style.zIndex = 0;
+    removeOpacity('replay-btn-screen');
+
+    removeOpacity(endScreenId);
+    setTimeout(() => {
+        removeElement(endScreenId);
+    }, 500);
+}
+
+
+/**
+ * Shows the end screen (either "game lost" or "game won" screen).
+ * @param {string} endScreenId - The id of the end screen element to be displayed.
+ */
+function showEndScreen(endScreenId) {
+    showElement(endScreenId);
+    addOpacity(endScreenId);
+    showElement('replay-btn-screen');
+    addOpacity('replay-btn-screen');
+    document.getElementById('replay-btn-screen').style.zIndex = 1;
+
+}
+
+
+/*--------------------------------------------------
+Intervals
+---------------------------------------------------*/
+/**
+ * Sets a new interval using `setInterval` and keeps track of the interval ID.
+ * @param {Function} fn - The function to be executed at each interval.
+ * @param {number} time - The interval time in milliseconds.
+ * @returns {number} The ID of the created interval.
+ */
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+    return id;
+}
+
+
+/**
+ * Clears all the stoppable intervals by using their respective interval IDs.
+ */
+function clearStoppableIntervals() {
+    intervalIds.forEach(clearInterval);
+}
+
+
+/**
+ * Clears all intervals in the window object (interval IDs from 1 to 9999).
+ */
+function clearAllIntervals() {
+    for (let i = 1; i &lt; 9999; i++)
+        window.clearInterval(i);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BabyChicken.html">BabyChicken</a></li><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CollectableBottle.html">CollectableBottle</a></li><li><a href="CollectableCoin.html">CollectableCoin</a></li><li><a href="CollectableObject.html">CollectableObject</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="StatusBarBottles.html">StatusBarBottles</a></li><li><a href="StatusBarCoins.html">StatusBarCoins</a></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a></li><li><a href="StatusBarHealth.html">StatusBarHealth</a></li><li><a href="ThrownObject.html">ThrownObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aKeyIsPressed">aKeyIsPressed</a></li><li><a href="global.html#addOpacity">addOpacity</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearStoppableIntervals">clearStoppableIntervals</a></li><li><a href="global.html#closeFullscreen">closeFullscreen</a></li><li><a href="global.html#createBackgroundObjectsForLevel1">createBackgroundObjectsForLevel1</a></li><li><a href="global.html#getCanvasHeight">getCanvasHeight</a></li><li><a href="global.html#getCanvasWidth">getCanvasWidth</a></li><li><a href="global.html#handleTouchKeys">handleTouchKeys</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#initLevelBackground">initLevelBackground</a></li><li><a href="global.html#initLevelCollectableObjects">initLevelCollectableObjects</a></li><li><a href="global.html#initLevelEnemies">initLevelEnemies</a></li><li><a href="global.html#initWorld">initWorld</a></li><li><a href="global.html#isMobileDevice">isMobileDevice</a></li><li><a href="global.html#isTouchDevice">isTouchDevice</a></li><li><a href="global.html#isTouchDeviceInLandscapeMode">isTouchDeviceInLandscapeMode</a></li><li><a href="global.html#loadSoundSettingFromLocalStorage">loadSoundSettingFromLocalStorage</a></li><li><a href="global.html#openFullscreen">openFullscreen</a></li><li><a href="global.html#preloadAudioElements">preloadAudioElements</a></li><li><a href="global.html#provideTouchKeysForMobileDevices">provideTouchKeysForMobileDevices</a></li><li><a href="global.html#removeElement">removeElement</a></li><li><a href="global.html#removeEndScreen">removeEndScreen</a></li><li><a href="global.html#removeLoaderWhenAllImagesAreLoaded">removeLoaderWhenAllImagesAreLoaded</a></li><li><a href="global.html#removeOpacity">removeOpacity</a></li><li><a href="global.html#removeStartScreen">removeStartScreen</a></li><li><a href="global.html#resizeCanvasContent">resizeCanvasContent</a></li><li><a href="global.html#resizeEndScreen">resizeEndScreen</a></li><li><a href="global.html#resizeFullscreenIcon">resizeFullscreenIcon</a></li><li><a href="global.html#resizeInfoIcon">resizeInfoIcon</a></li><li><a href="global.html#resizeInfoScreen">resizeInfoScreen</a></li><li><a href="global.html#resizeInfoScreenIcons">resizeInfoScreenIcons</a></li><li><a href="global.html#resizeInfoScreenKeys">resizeInfoScreenKeys</a></li><li><a href="global.html#resizeInfoScreenSoundOptions">resizeInfoScreenSoundOptions</a></li><li><a href="global.html#resizeMenuBar">resizeMenuBar</a></li><li><a href="global.html#resizePlayButton">resizePlayButton</a></li><li><a href="global.html#resizeReplayButton">resizeReplayButton</a></li><li><a href="global.html#resizeSoundIcon">resizeSoundIcon</a></li><li><a href="global.html#resizeTouchKeys">resizeTouchKeys</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#saveSoundSettingToLocalStorage">saveSoundSettingToLocalStorage</a></li><li><a href="global.html#setAllAudioElementsToBeginning">setAllAudioElementsToBeginning</a></li><li><a href="global.html#setSoundIcon">setSoundIcon</a></li><li><a href="global.html#setStartPointsForClouds">setStartPointsForClouds</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#synchronizeTouchKeyWithKeyboardKey">synchronizeTouchKeyWithKeyboardKey</a></li><li><a href="global.html#synchronizeTouchendWithKeyup">synchronizeTouchendWithKeyup</a></li><li><a href="global.html#synchronizeTouchstartWithKeydown">synchronizeTouchstartWithKeydown</a></li><li><a href="global.html#toggleEndScreen">toggleEndScreen</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleGameInfo">toggleGameInfo</a></li><li><a href="global.html#toggleSoundAndMusic">toggleSoundAndMusic</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Nov 16 2023 21:42:53 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

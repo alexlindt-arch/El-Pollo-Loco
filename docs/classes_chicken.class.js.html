@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: classes/chicken.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: classes/chicken.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** 
+ * Class representing a Chicken
+ * @extends MovableObject
+ */
+class Chicken extends MovableObject {
+    y = 350;
+    width = 248 / 3;
+    height = 243 / 3;
+    IMAGES_WALK = [
+        'assets/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
+        'assets/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
+        'assets/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
+    ];
+    IMAGES_DEATH = [
+        'assets/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+    ];
+    numberOfImagesToLoad = this.IMAGES_WALK.length + this.IMAGES_DEATH.length + 1;
+    offset = {
+        top: 0.05 * this.height,
+        right: 0.02 * this.width,
+        bottom: 0.2 * this.height,
+        left: 0.02 * this.width
+    };
+    energyLossPerHit = 100;
+    smash_sound = audioElements['assets/audio/smash.mp3'];
+    death_sound = audioElements['assets/audio/chicken_dead.mp3'];
+
+    /**
+     * Constructs an instance of Chicken.
+     * Loads the images for walk and death animations, sets initial position and speed,
+     * starts animation and sound effects.
+     */
+    constructor() {
+        super().loadImage(this.IMAGES_WALK[0]);
+        this.loadImages(this.IMAGES_WALK);
+        this.loadImages(this.IMAGES_DEATH);
+
+        this.x = 2 * CANVAS_WIDTH + Math.random() * (MOST_RIGHT_BG - 2) * CANVAS_WIDTH;
+        this.speed = 0.15 + Math.random() * 0.5;
+
+        this.animate();
+        this.playSoundEffects();
+    }
+
+    /**
+     * Starts the intervals for moving the Chicken and playing its animations.
+     */
+    animate() {
+        setStoppableInterval(() => this.moveChicken(), 1000 / 60);
+        setStoppableInterval(() => this.playChickenAnimations(), 200);
+    }
+
+    /**
+     * Moves the Chicken to the left.
+     */
+    moveChicken() {
+        if (this.isDead()) return;
+        this.moveLeft();
+    }
+
+    /**
+     * Plays the appropriate animations based on the Chicken's state (walk or death).
+     */
+    playChickenAnimations() {
+        if (this.isDead()) {
+            this.playAnimation(this.IMAGES_DEATH);
+        }
+        else {
+            this.playAnimation(this.IMAGES_WALK);
+        }
+    }
+
+    /**
+     * Plays sound effects for the Chicken, particularly the death sound.
+     */
+    playSoundEffects() {
+        setStoppableInterval(() => {
+            if (this.isDead()) {
+                if (this.deathSoundHasBeenPlayed) return;
+                this.death_sound.currentTime = 0;
+                this.world.playSoundIfSwitchedOn(this.death_sound);
+                this.deathSoundHasBeenPlayed = true;
+            }
+        }, 200);
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BabyChicken.html">BabyChicken</a></li><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CollectableBottle.html">CollectableBottle</a></li><li><a href="CollectableCoin.html">CollectableCoin</a></li><li><a href="CollectableObject.html">CollectableObject</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="StatusBarBottles.html">StatusBarBottles</a></li><li><a href="StatusBarCoins.html">StatusBarCoins</a></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a></li><li><a href="StatusBarHealth.html">StatusBarHealth</a></li><li><a href="ThrownObject.html">ThrownObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#aKeyIsPressed">aKeyIsPressed</a></li><li><a href="global.html#addOpacity">addOpacity</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearStoppableIntervals">clearStoppableIntervals</a></li><li><a href="global.html#closeFullscreen">closeFullscreen</a></li><li><a href="global.html#createBackgroundObjectsForLevel1">createBackgroundObjectsForLevel1</a></li><li><a href="global.html#getCanvasHeight">getCanvasHeight</a></li><li><a href="global.html#getCanvasWidth">getCanvasWidth</a></li><li><a href="global.html#handleTouchKeys">handleTouchKeys</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#initLevelBackground">initLevelBackground</a></li><li><a href="global.html#initLevelCollectableObjects">initLevelCollectableObjects</a></li><li><a href="global.html#initLevelEnemies">initLevelEnemies</a></li><li><a href="global.html#initWorld">initWorld</a></li><li><a href="global.html#isMobileDevice">isMobileDevice</a></li><li><a href="global.html#isTouchDevice">isTouchDevice</a></li><li><a href="global.html#isTouchDeviceInLandscapeMode">isTouchDeviceInLandscapeMode</a></li><li><a href="global.html#loadSoundSettingFromLocalStorage">loadSoundSettingFromLocalStorage</a></li><li><a href="global.html#openFullscreen">openFullscreen</a></li><li><a href="global.html#preloadAudioElements">preloadAudioElements</a></li><li><a href="global.html#provideTouchKeysForMobileDevices">provideTouchKeysForMobileDevices</a></li><li><a href="global.html#removeElement">removeElement</a></li><li><a href="global.html#removeEndScreen">removeEndScreen</a></li><li><a href="global.html#removeLoaderWhenAllImagesAreLoaded">removeLoaderWhenAllImagesAreLoaded</a></li><li><a href="global.html#removeOpacity">removeOpacity</a></li><li><a href="global.html#removeStartScreen">removeStartScreen</a></li><li><a href="global.html#resizeCanvasContent">resizeCanvasContent</a></li><li><a href="global.html#resizeEndScreen">resizeEndScreen</a></li><li><a href="global.html#resizeFullscreenIcon">resizeFullscreenIcon</a></li><li><a href="global.html#resizeInfoIcon">resizeInfoIcon</a></li><li><a href="global.html#resizeInfoScreen">resizeInfoScreen</a></li><li><a href="global.html#resizeInfoScreenIcons">resizeInfoScreenIcons</a></li><li><a href="global.html#resizeInfoScreenKeys">resizeInfoScreenKeys</a></li><li><a href="global.html#resizeInfoScreenSoundOptions">resizeInfoScreenSoundOptions</a></li><li><a href="global.html#resizeMenuBar">resizeMenuBar</a></li><li><a href="global.html#resizePlayButton">resizePlayButton</a></li><li><a href="global.html#resizeReplayButton">resizeReplayButton</a></li><li><a href="global.html#resizeSoundIcon">resizeSoundIcon</a></li><li><a href="global.html#resizeTouchKeys">resizeTouchKeys</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#saveSoundSettingToLocalStorage">saveSoundSettingToLocalStorage</a></li><li><a href="global.html#setAllAudioElementsToBeginning">setAllAudioElementsToBeginning</a></li><li><a href="global.html#setSoundIcon">setSoundIcon</a></li><li><a href="global.html#setStartPointsForClouds">setStartPointsForClouds</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#synchronizeTouchKeyWithKeyboardKey">synchronizeTouchKeyWithKeyboardKey</a></li><li><a href="global.html#synchronizeTouchendWithKeyup">synchronizeTouchendWithKeyup</a></li><li><a href="global.html#synchronizeTouchstartWithKeydown">synchronizeTouchstartWithKeydown</a></li><li><a href="global.html#toggleEndScreen">toggleEndScreen</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleGameInfo">toggleGameInfo</a></li><li><a href="global.html#toggleSoundAndMusic">toggleSoundAndMusic</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Nov 16 2023 21:42:53 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
