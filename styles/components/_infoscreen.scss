@@ -3,8 +3,31 @@
 
 #info-screen {
     @include mixins.flex-centered;
+    position: relative;
     padding: 10% 5% 6% 5%;
     background-color: variables.$transparent-black;
+}
+
+#info-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 4;
+    width: 40px;
+    height: 40px;
+    @include mixins.flex-centered;
+    border: none;
+    border-radius: 50%;
+    background: variables.$loco-gradient;
+    color: variables.$loco-red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+        color: #ffffff;
+    }
 }
 
 #info-content {

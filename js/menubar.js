@@ -53,6 +53,16 @@ function toggleGameInfo() {
     document.getElementById('touch-keys').classList.toggle('full-opacity');
     if (gameIsRunning) return;
 
+    updatePlayButtonAndScreens();
+}
+
+
+/**
+ * Shows or hides the play button and end screens depending on the current game state.
+ * Called by toggleGameInfo() when the game is not running.
+ */
+function updatePlayButtonAndScreens() {
+
     if (gameIsLost) {
         toggleEndScreen('end-screen-lost');
     }
@@ -63,6 +73,20 @@ function toggleGameInfo() {
         document.getElementById('play-btn').classList.toggle('d-none');
     }
 }
+
+
+/**
+ * Closes the info screen when the user clicks on the backdrop (outside the content box),
+ * but only while the info screen is currently open.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const infoScreen = document.getElementById('info-screen');
+    infoScreen.addEventListener('click', (e) => {
+        if (e.target === infoScreen && infoScreen.classList.contains('full-opacity')) {
+            toggleGameInfo();
+        }
+    });
+});
 
 
 /**

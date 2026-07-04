@@ -144,8 +144,33 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   padding: 10% 5% 6% 5%;
   background-color: rgba(0, 0, 0, 0.878);
+}
+
+#info-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #ef8b10, #ffc521);
+  color: #a0220a;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#info-close:hover {
+  color: #ffffff;
 }
 
 #info-content {

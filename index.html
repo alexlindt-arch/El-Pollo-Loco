@@ -19,6 +19,7 @@
     <script src="classes/endboss.class.js"></script>
     <script src="classes/cloud.class.js"></script>
     <script src="classes/world.class.js"></script>
+    <script src="classes/world-render.class.js"></script>
     <script src="classes/background-object.class.js"></script>
     <script src="classes/status-bar.class.js"></script>
     <script src="classes/status-bar-health.class.js"></script>
@@ -61,23 +62,24 @@
 
         <div id="play-btn-screen" class="overlay-screen full-opacity">
             <button id="play-btn" onclick="startGame()">
-                <img id="play-btn-img" src="assets/img/play.png">
+                <img id="play-btn-img" src="assets/img/play.png" alt="Play">
             </button>
         </div>
 
         <div id="menu-bar">
             <button id="sound-btn" onclick="toggleSoundAndMusic()">
-                <img id="sound-btn-icon" src="assets/img/sounds-and-music.png">
+                <img id="sound-btn-icon" src="assets/img/sounds-and-music.png" alt="Sound and music on">
             </button>
             <button id="info-btn" onclick="toggleGameInfo()">
-                <img id="info-btn-icon" src="assets/img/info.png">
+                <img id="info-btn-icon" src="assets/img/info.png" alt="Info">
             </button>
             <button id="fullscreen-btn" onclick="toggleFullscreen()">
-                <img id="fullscreen-btn-icon" src="assets/img/fullscreen.png">
+                <img id="fullscreen-btn-icon" src="assets/img/fullscreen.png" alt="Toggle fullscreen">
             </button>
         </div>
 
         <div id="info-screen" class="overlay-screen">
+            <button id="info-close" onclick="toggleGameInfo()" title="Close" aria-label="Close info">&times;</button>
             <div id="info-content">
                 <section>
                     <h2>Story</h2>
@@ -109,7 +111,7 @@
                             <tr>
                                 <td class="icon-td">
                                     <div class="key">
-                                        <img src="assets/img/key-right.png">
+                                        <img src="assets/img/key-right.png" alt="Move right">
                                     </div>
                                 </td>
                                 <td><span>Move Right</span></td>
@@ -117,7 +119,7 @@
                             <tr>
                                 <td class="icon-td">
                                     <div class="key">
-                                        <img src="assets/img/key-left.png">
+                                        <img src="assets/img/key-left.png" alt="Move left">
                                     </div>
                                 </td>
                                 <td><span>Move Left</span></td>
@@ -125,14 +127,14 @@
                             <tr>
                                 <td class="icon-td">
                                     <div class="key desktop-only">
-                                        <img class="key-space" src="assets/img/key-space.png">
+                                        <img class="key-space" src="assets/img/key-space.png" alt="Jump">
                                     </div>
                                     <span id="key-separator" class="desktop-only">/</span>
                                     <div class="key desktop-only">
-                                        <img src="assets/img/key-up.png">
+                                        <img src="assets/img/key-up.png" alt="Jump">
                                     </div>
                                     <div class="key mobile-only">
-                                        <img src="assets/img/key-up.png">
+                                        <img src="assets/img/key-up.png" alt="Jump">
                                     </div>
                                 </td>
                                 <td><span>Jump</span></td>
@@ -143,7 +145,7 @@
                                         D
                                     </div>
                                     <div class="key mobile-only">
-                                        <img class="key-bottle" src="assets/img/key-bottle.png">
+                                        <img class="key-bottle" src="assets/img/key-bottle.png" alt="Throw bottle">
                                     </div>
                                 </td>
                                 <td><span>Throw Bottles</span></td>
@@ -162,7 +164,7 @@
                             <tr>
                                 <td class="icon-td">
                                     <div class="sound-option">
-                                        <img src="assets/img/sounds-and-music.png">
+                                        <img src="assets/img/sounds-and-music.png" alt="Sound and music on">
                                     </div>
                                 </td>
                                 <td><span>Play Sounds And Music</span></td>
@@ -170,7 +172,7 @@
                             <tr>
                                 <td class="icon-td">
                                     <div class="sound-option">
-                                        <img src="assets/img/sounds-without-music.png">
+                                        <img src="assets/img/sounds-without-music.png" alt="Sound only, no music">
                                     </div>
                                 </td>
                                 <td><span>Play Sounds Only (No Music)</span></td>
@@ -178,7 +180,7 @@
                             <tr>
                                 <td class="icon-td">
                                     <div class="sound-option">
-                                        <img src="assets/img/sounds-off.png">
+                                        <img src="assets/img/sounds-off.png" alt="Sound off">
                                     </div>
                                 </td>
                                 <td><span>Mute Sounds And Music</span></td>
@@ -204,21 +206,20 @@
 
         <div id="touch-keys" class="d-none full-opacity">
             <div id="touch-keys-lefthand">
-                <button id="touch-key-left" class="touch-key" onmousedown="keyboard.LEFT=true"
-                    onmouseup="keyboard.LEFT=false">
-                    <img src="assets/img/key-left.png">
+                <button id="touch-key-left" class="touch-key">
+                    <img src="assets/img/key-left.png" alt="Move left">
                 </button>
                 <button id="touch-key-right" class="touch-key">
-                    <img src="assets/img/key-right.png">
+                    <img src="assets/img/key-right.png" alt="Move right">
                 </button>
             </div>
 
             <div id="touch-keys-righthand">
                 <button id="touch-key-jump" class="touch-key">
-                    <img src="assets/img/key-up.png">
+                    <img src="assets/img/key-up.png" alt="Jump">
                 </button>
                 <button id="touch-key-throw" class="touch-key">
-                    <img class="key-bottle" src="assets/img/key-bottle.png">
+                    <img class="key-bottle" src="assets/img/key-bottle.png" alt="Throw bottle">
                 </button>
             </div>
         </div>
@@ -227,24 +228,24 @@
     <div id="permanent-key-info-container">
         <div class="permanent-key-info">
             <div class="permanent-key">
-                <img src="assets/img/key-left.png">
+                <img src="assets/img/key-left.png" alt="Move left">
             </div>
             <span>Move Left</span>
         </div>
         <div class="permanent-key-info">
             <div class="permanent-key">
-                <img src="assets/img/key-right.png">
+                <img src="assets/img/key-right.png" alt="Move right">
             </div>
             <span>Move Right</span>
         </div>
         <div class="permanent-key-info">
             <div class="permanent-key-jump">
                 <div class="permanent-key">
-                    <img class="key-space" src="assets/img/key-space.png">
+                    <img class="key-space" src="assets/img/key-space.png" alt="Jump">
                 </div>
                 <span id="permanent-key-separator">/</span>
                 <div class="permanent-key">
-                    <img src="assets/img/key-up.png">
+                    <img src="assets/img/key-up.png" alt="Jump">
                 </div>
             </div>
             <span>Jump</span>
