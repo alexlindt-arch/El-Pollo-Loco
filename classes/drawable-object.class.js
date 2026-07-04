@@ -58,8 +58,7 @@ class DrawableObject {
         try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         } catch (error) {
-            console.warn('Error drawing image', error);
-            console.log('Unable to draw image', this.img.src);
+            // Image not yet loaded – silently skip this frame.
         }
     }
 

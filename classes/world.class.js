@@ -451,8 +451,7 @@ class World {
             object.draw(this.ctx);
             // object.drawFrames(this.ctx);
         } catch (error) {
-            console.warn(error);
-            console.log(object);
+            // Object could not be drawn (e.g. image not ready) – skip it.
         }
 
         this.flipImageBackIfNecessary(object);
@@ -540,8 +539,7 @@ class World {
                 const p = soundObject.play();
                 if (p && p.catch) p.catch(() => {});
             } catch (error) {
-                console.warn('Error playing sound', error);
-                console.log('Unable to play sound', soundObject);
+                // Playback blocked or file missing – ignore.
             }
         } else {
             soundObject.pause();
@@ -558,8 +556,7 @@ class World {
                 const p = musicObject.play();
                 if (p && p.catch) p.catch(() => {});
             } catch (error) {
-                console.warn('Error playing music', error);
-                console.log('Unable to play music', musicObject);
+                // Playback blocked or file missing – ignore.
             }
         } else {
             musicObject.pause();

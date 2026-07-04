@@ -39,7 +39,7 @@ async function startGame() {
         provideTouchKeysForMobileDevices();
         gameIsRunning = true;
     } catch (error) {
-        console.error("An error occurred while starting the game:", error);
+        // Game could not be started – loader is removed in finally.
     } finally {
         removeLoaderWhenAllImagesAreLoaded(); // Ensure that the loader element is removed, even if there's an error, but only when all relevant images are loaded
     }
