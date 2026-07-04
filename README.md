@@ -5,7 +5,6 @@ Help *Pepe Peligroso* fight his way through the Mexican desert, collect coins an
 and defeat the crazy chicken boss — **El Pollo Loco**.
 
 ![Start screen](screenshots/start.png)
-![Gameplay](screenshots/gameplay.png)
 
 ## 🎮 How to play
 
