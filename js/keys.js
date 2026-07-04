@@ -107,6 +107,16 @@ function synchronizeTouchKeyWithKeyboardKey(touchKeyId, keyName) {
     const touchKey = document.getElementById(touchKeyId);
     synchronizeTouchstartWithKeydown(touchKey, keyName);
     synchronizeTouchendWithKeyup(touchKey, keyName);
+    disableContextMenu(touchKey);
+}
+
+
+/**
+ * Disables the context menu (right-click / touch-and-hold) on a touch key element.
+ * @param {HTMLElement} touchKey - The touch key element to disable the context menu on.
+ */
+function disableContextMenu(touchKey) {
+    touchKey.addEventListener('contextmenu', (e) => e.preventDefault());
 }
 
 
