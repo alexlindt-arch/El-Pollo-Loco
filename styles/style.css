@@ -365,7 +365,7 @@ canvas {
   align-items: center;
   flex-wrap: wrap;
   gap: clamp(10px, 2.5vw, 32px);
-  width: min(684px, 95vw);
+  width: min(684px, 95vw, calc((100vh - 210px) * 1.5));
   font-size: clamp(15px, 2vw, 24px);
   background-color: rgba(255, 197, 33, 0.4);
   padding: 10px;
