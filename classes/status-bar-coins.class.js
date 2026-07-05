@@ -4,7 +4,7 @@
  * */
 class StatusBarCoins extends StatusBar {
     x = 20;
-    y = 45;
+    y = 56;
     dirName = '1_statusbar/1_statusbar_coin';
     color = 'blue';
     percentage = 0;

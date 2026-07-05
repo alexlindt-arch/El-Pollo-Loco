@@ -109,7 +109,7 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 32.4px;
+  gap: 20px;
   position: absolute;
   top: 4px !important;
   right: 21.6px;
@@ -131,7 +131,7 @@ canvas {
 #sound-btn img,
 #info-btn img,
 #fullscreen-btn img {
-  width: 24px;
+  width: 19px;
   opacity: 0.8;
 }
 #sound-btn:hover img,
@@ -141,7 +141,7 @@ canvas {
 }
 
 #fullscreen-btn img {
-  width: 21.6px;
+  width: 17px;
 }
 
 #info-screen {

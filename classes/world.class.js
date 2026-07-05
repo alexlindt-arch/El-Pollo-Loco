@@ -26,7 +26,7 @@ class World {
      */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d'); // defines functions/settings for insertion of images
-        this.ctx.font = '20px "boogaloo", Arial, Helvetica, sans-serif';
+        this.ctx.font = '24px "boogaloo", Arial, Helvetica, sans-serif';
         this.ctx.fillStyle = '#fff';
         this.ctx.textAlign = 'center';
         this.canvas = canvas;

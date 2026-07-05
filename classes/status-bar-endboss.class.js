@@ -3,10 +3,10 @@
  * @extends StatusBar
  * */
 class StatusBarEndboss extends StatusBar {
-    x = CANVAS_WIDTH - (674 / 4.2 + 16);
+    x = CANVAS_WIDTH - (674 / 3.3 + 16);
     y = 70;
-    width = 674 / 4.2;
-    height = 165 / 4.2;
+    width = 674 / 3.3;
+    height = 165 / 3.3;
     dirName = '2_statusbar_endboss';
     color = 'green';
     percentage = 100;

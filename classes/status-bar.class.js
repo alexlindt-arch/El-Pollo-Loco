@@ -3,8 +3,8 @@
  * @extends DrawableObject
  * */
 class StatusBar extends DrawableObject {
-    width = 595 / 4.6;
-    height = 158 / 4.6;
+    width = 595 / 3.4;
+    height = 158 / 3.4;
     dirName;
     color = 'green';
     IMAGES = [];

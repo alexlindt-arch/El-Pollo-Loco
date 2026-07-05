@@ -23,7 +23,7 @@ function resizeCanvasContent() {
  */
 function resizeMenuBar() {
     const menuBar = document.getElementById('menu-bar');
-    menuBar.style.gap = `${0.045 * getCanvasWidth()}px`;
+    menuBar.style.gap = `${0.028 * getCanvasWidth()}px`;
     menuBar.style.top = `${0.03 * getCanvasWidth()}px`;
     menuBar.style.right = `${0.03 * getCanvasWidth()}px`;
 
@@ -39,10 +39,10 @@ function resizeMenuBar() {
 function resizeSoundIcon() {
     const soundIcon = document.getElementById('sound-btn-icon');
     if (musicIsOn) {
-        soundIcon.style.width = `${0.034 * getCanvasWidth()}px`;
+        soundIcon.style.width = `${0.027 * getCanvasWidth()}px`;
     }
     else {
-        soundIcon.style.width = `${0.03 * getCanvasWidth()}px`;
+        soundIcon.style.width = `${0.024 * getCanvasWidth()}px`;
     }
 }
 
@@ -52,7 +52,7 @@ function resizeSoundIcon() {
  */
 function resizeInfoIcon() {
     const infoIcon = document.getElementById('info-btn-icon');
-    infoIcon.style.width = `${0.034 * getCanvasWidth()}px`;
+    infoIcon.style.width = `${0.027 * getCanvasWidth()}px`;
 }
 
 
@@ -61,7 +61,7 @@ function resizeInfoIcon() {
  */
 function resizeFullscreenIcon() {
     const fullscreenIcon = document.getElementById('fullscreen-btn-icon');
-    fullscreenIcon.style.width = `${0.03 * getCanvasWidth()}px`;
+    fullscreenIcon.style.width = `${0.024 * getCanvasWidth()}px`;
 }
 
 
