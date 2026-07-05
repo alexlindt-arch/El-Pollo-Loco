@@ -75,12 +75,15 @@
 body.legal-page {
     justify-content: flex-start;
     padding: 40px 20px;
-    overflow-y: auto;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #legal-content {
     position: relative;
     width: min(720px, 92vw);
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 16px;
     padding: 32px;
