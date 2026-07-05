@@ -7,8 +7,8 @@
     flex-wrap: nowrap;
     white-space: nowrap;
     gap: 1.1em;
-    width: min(684px, 95vw, calc((100vh - 210px) * 1.5));
-    font-size: clamp(10px, #{"calc(min(684px, 95vw, (100vh - 210px) * 1.5) / 30)"}, 24px);
+    width: min(684px, 95vw, calc((100vh - 240px) * 1.5));
+    font-size: clamp(10px, #{"calc(min(684px, 95vw, (100vh - 240px) * 1.5) / 30)"}, 24px);
     background-color: rgba(variables.$loco-yellow, 0.4);
     padding: 10px;
     border-radius: 10px;

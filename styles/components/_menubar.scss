@@ -3,7 +3,7 @@
 
 #menu-bar {
     @include mixins.flex-centered;
-    gap: calc(0.045 * variables.$canvas-width);
+    gap: 20px;
     position: absolute;
     top: 4px !important;
     right: calc(0.03 * variables.$canvas-width);
@@ -21,7 +21,7 @@
     outline: none;
 
     img {
-        width: 24px;
+        width: 19px;
         opacity: 0.8;
     }
 
@@ -31,5 +31,5 @@
 }
 
 #fullscreen-btn img {
-    width: 21.6px;
+    width: 17px;
 }

@@ -35,12 +35,8 @@
         display: none !important;
     }
 
-    #touch-keys {
-        opacity: 0.9;
-    }
-
     #main-screen-container {
-        width: min(720px, 95vw, calc((100vh - 240px) * 1.5));
+        width: min(720px, 95vw, calc((100vh - 160px) * 1.5));
     }
 
     @media (orientation:landscape) and (max-height: 500px) {
@@ -54,7 +50,7 @@
         }
 
         #main-screen-container {
-            width: min(100vw, calc((100vh - 78px) * 1.5));
+            width: min(100vw, calc(100vh * 1.5));
         }
 
         canvas {
@@ -67,8 +63,7 @@
         }
 
         #touch-keys {
-            margin-top: 2px;
-            padding: 2px 16px;
+            padding: 8px 16px;
         }
     }
 }
