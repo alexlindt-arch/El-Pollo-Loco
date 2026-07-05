@@ -35,9 +35,11 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    gap: 4%;
 }
 
-#replay-btn {
+#replay-btn,
+#menu-btn {
     @include mixins.flex-centered;
     border-radius: 10px;
     color: variables.$loco-red;

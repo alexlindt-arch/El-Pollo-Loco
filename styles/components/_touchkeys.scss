@@ -6,7 +6,8 @@
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    bottom: -100px;
+    top: 100%;
+    margin-top: 8px;
     padding: calc(0.015 * variables.$canvas-width) calc(0.045 * variables.$canvas-width);
     width: 100%;
     opacity: 0.2;

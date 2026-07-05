@@ -21,7 +21,7 @@
     outline: none;
 
     img {
-        width: calc(0.045 * variables.$canvas-width);
+        width: 24px;
         opacity: 0.8;
     }
 
@@ -31,5 +31,5 @@
 }
 
 #fullscreen-btn img {
-    width: calc(0.04 * variables.$canvas-width);
+    width: 21.6px;
 }
