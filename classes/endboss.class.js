@@ -97,8 +97,21 @@ class Endboss extends MovableObject {
             this.jump();
         }
         if (this.isAboveGround()) {
-            this.moveFast(3);
+            this.moveFast(2);
         }
+    }
+
+    /** Makes the endboss jump with a flatter arc than the default, so it cannot leap over the character. */
+    jump() {
+        this.speedY = 20;
+    }
+
+    /**
+     * Calculates the horizontal distance between the centers of the endboss and the character.
+     * @returns {number} The distance in pixels.
+     */
+    distanceToCharacter() {
+        return Math.abs((this.x + 0.5 * this.width) - (this.world.character.x + 0.5 * this.world.character.width));
     }
 
     /** Turns the endboss towards the character based on their relative positions. */
@@ -163,7 +176,7 @@ class Endboss extends MovableObject {
      * @returns {boolean} True if the endboss shall jump, false otherwise.
      */
     shallJump() {
-        return this.isAttacking() && !this.isAboveGround();
+        return this.isAttacking() && !this.isAboveGround() && this.distanceToCharacter() > 150;
     }
 
     /*--------------------------------------------------

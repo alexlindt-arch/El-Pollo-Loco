@@ -12,10 +12,10 @@ class CollectableCoin extends CollectableObject {
     ];
     numberOfImagesToLoad = 1;
     offset = {
-        top: 0.3 * this.height,
-        right: 0.3 * this.width,
-        bottom: 0.3 * this.height,
-        left: 0.3 * this.width
+        top: 0.36 * this.height,
+        right: 0.36 * this.width,
+        bottom: 0.36 * this.height,
+        left: 0.36 * this.width
     };
     collect_sound = audioElements['assets/audio/coin.mp3'];
 

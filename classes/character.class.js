@@ -85,15 +85,16 @@ class Character extends MovableObject {
     numberOfImagesToLoad = this.IMAGES_IDLE.length + this.IMAGES_LONGIDLE.length + this.IMAGES_WALK.length + this.IMAGES_JUMP.length + this.IMAGES_HURT.length + this.IMAGES_DEATH.length + this.IMAGES_DANCE.length + 1;
     offset = {
         top: 0.5 * this.height,
-        right: 0.3 * this.width,
+        right: 0.22 * this.width,
         bottom: 0.05 * this.height,
-        left: 0.2 * this.width
+        left: 0.15 * this.width
     };
     energyLossPerHit = 5;
     energyGainPerCoin = 1;
     numberOfCoins = 0;
     numberOfBottles = 0;
     lastThrow = 0;
+    jumpFrame = 0;
     walking_sound = audioElements['assets/audio/running.mp3'];
     jump_sound = audioElements['assets/audio/jump_voice.mp3'];
     nothingToThrow_sound = audioElements['assets/audio/nothrow.mp3'];
@@ -156,6 +157,12 @@ class Character extends MovableObject {
      */
     shallJump() {
         return (this.world.keyboard.UP || this.world.keyboard.SPACE) && !this.isAboveGround();
+    }
+
+    /** Makes the character jump and restarts the jump animation at its first frame. */
+    jump() {
+        super.jump();
+        this.jumpFrame = 0;
     }
 
     /** Moves the character to the right and clears the otherDirection flag. */
@@ -234,7 +241,24 @@ class Character extends MovableObject {
      * @param {MovableObject} obj - True if the character is walking, otherwise false.
      */
     isJumpingOn(obj) {
-        return this.isColliding(obj) && this.isAboveGround();
+        return this.isColliding(obj) && this.isAboveGround() && this.isFalling() && this.isAbove(obj);
+    }
+
+    /**
+     * Checks if the character is falling (moving downwards).
+     * @returns {boolean} True if the character is falling, otherwise false.
+     */
+    isFalling() {
+        return this.speedY < 0;
+    }
+
+    /**
+     * Checks if the character's feet are above the upper body of the given object.
+     * @param {MovableObject} obj - The object to compare positions with.
+     * @returns {boolean} True if the character is above the object, otherwise false.
+     */
+    isAbove(obj) {
+        return this.y + this.height - this.offset.bottom < obj.y + 0.6 * obj.height;
     }
 
     /**
@@ -279,12 +303,30 @@ class Character extends MovableObject {
             if (!this.lastImageIsShown(this.IMAGES_DEATH)) this.playAnimation(this.IMAGES_DEATH);
         }
         else if (this.isHurt()) this.playAnimation(this.IMAGES_HURT);
-        else if (this.isAboveGround()) this.playAnimation(this.IMAGES_JUMP);
+        else if (this.isAboveGround()) this.playJumpAnimation();
         else if (this.isWalking()) this.playAnimation(this.IMAGES_WALK);
         else {
             if (!this.isSleeping()) this.playAnimation(this.IMAGES_IDLE);
             else this.playAnimation(this.IMAGES_LONGIDLE);
         }
+    }
+
+    /**
+     * Plays the jump animation frame by frame:
+     * take-off frames while rising, apex frame at the top, falling frames while descending.
+     * The animation always starts at the first frame (reset in jump()) and never loops.
+     */
+    playJumpAnimation() {
+        if (this.speedY > 5) {
+            if (this.jumpFrame < 4) this.jumpFrame++;
+        }
+        else if (this.speedY >= -5) {
+            this.jumpFrame = 5;
+        }
+        else {
+            this.jumpFrame = Math.min(Math.max(this.jumpFrame + 1, 6), 8);
+        }
+        this.img = this.imageCache[this.IMAGES_JUMP[this.jumpFrame]];
     }
 
     /** Plays the dance animation. */

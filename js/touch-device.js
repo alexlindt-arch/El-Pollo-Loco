@@ -3,7 +3,8 @@
  * @returns {boolean} `true` if the device supports touch input, `false` otherwise.
  */
 function isTouchDevice() {
-    return (('ontouchstart' in window) ||
+    return (window.matchMedia('(pointer: coarse)').matches ||
+        ('ontouchstart' in window) ||
         (navigator.maxTouchPoints > 0) ||
         (navigator.msMaxTouchPoints > 0));
 }

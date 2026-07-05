@@ -39,10 +39,10 @@ function resizeMenuBar() {
 function resizeSoundIcon() {
     const soundIcon = document.getElementById('sound-btn-icon');
     if (musicIsOn) {
-        soundIcon.style.width = `${0.045 * getCanvasWidth()}px`;
+        soundIcon.style.width = `${0.034 * getCanvasWidth()}px`;
     }
     else {
-        soundIcon.style.width = `${0.04 * getCanvasWidth()}px`;
+        soundIcon.style.width = `${0.03 * getCanvasWidth()}px`;
     }
 }
 
@@ -52,7 +52,7 @@ function resizeSoundIcon() {
  */
 function resizeInfoIcon() {
     const infoIcon = document.getElementById('info-btn-icon');
-    infoIcon.style.width = `${0.045 * getCanvasWidth()}px`;
+    infoIcon.style.width = `${0.034 * getCanvasWidth()}px`;
 }
 
 
@@ -61,7 +61,7 @@ function resizeInfoIcon() {
  */
 function resizeFullscreenIcon() {
     const fullscreenIcon = document.getElementById('fullscreen-btn-icon');
-    fullscreenIcon.style.width = `${0.04 * getCanvasWidth()}px`;
+    fullscreenIcon.style.width = `${0.03 * getCanvasWidth()}px`;
 }
 
 
@@ -80,7 +80,9 @@ function resizePlayButton() {
  */
 function resizeReplayButton() {
     const replayBtn = document.getElementById('replay-btn');
+    const menuBtn = document.getElementById('menu-btn');
     replayBtn.style.fontSize = `${0.056 * getCanvasWidth()}px`;
+    menuBtn.style.fontSize = `${0.056 * getCanvasWidth()}px`;
 }
 
 
@@ -168,13 +170,16 @@ function resizeTouchKeys() {
     const touchKeyContainerRight = document.getElementById('touch-keys-righthand');
     const touchKeys = document.getElementsByClassName('touch-key');
 
-    touchKeyContainer.style.padding = `${0.015 * getCanvasWidth()}px ${0.045 * getCanvasWidth()}px`;
-    touchKeyContainerLeft.style.gap = `${0.05 * getCanvasWidth()}px`;
-    touchKeyContainerRight.style.gap = `${0.05 * getCanvasWidth()}px`;
+    const keySize = Math.min(0.13 * getCanvasHeight(), 60);
+    const gap = Math.min(0.05 * getCanvasWidth(), 36);
+
+    touchKeyContainer.style.padding = `${Math.min(0.015 * getCanvasWidth(), 8)}px ${Math.min(0.045 * getCanvasWidth(), 32)}px`;
+    touchKeyContainerLeft.style.gap = `${gap}px`;
+    touchKeyContainerRight.style.gap = `${gap}px`;
 
     Array.from(touchKeys).forEach((key) => {
-        key.style.width = `${0.16 * getCanvasHeight()}px`;
-        key.style.height = `${0.16 * getCanvasHeight()}px`;
+        key.style.width = `${keySize}px`;
+        key.style.height = `${keySize}px`;
     });
 }
 

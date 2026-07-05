@@ -131,7 +131,7 @@ canvas {
 #sound-btn img,
 #info-btn img,
 #fullscreen-btn img {
-  width: 32.4px;
+  width: 24px;
   opacity: 0.8;
 }
 #sound-btn:hover img,
@@ -141,7 +141,7 @@ canvas {
 }
 
 #fullscreen-btn img {
-  width: 28.8px;
+  width: 21.6px;
 }
 
 #info-screen {
@@ -276,9 +276,11 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  gap: 4%;
 }
 
-#replay-btn {
+#replay-btn,
+#menu-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,11 +297,13 @@ canvas {
   cursor: pointer;
   transition: all 250ms ease-in-out;
 }
-#replay-btn:hover {
+#replay-btn:hover,
+#menu-btn:hover {
   background: linear-gradient(to bottom, #ef8b10, #ffc521);
   transition: all 250ms ease-in-out;
 }
-#replay-btn:active {
+#replay-btn:active,
+#menu-btn:active {
   background: rgba(160, 34, 10, 0.5);
   transition: all 250ms ease-in-out;
 }
@@ -309,7 +313,8 @@ canvas {
   align-items: center;
   justify-content: space-between;
   position: absolute;
-  bottom: -100px;
+  top: 100%;
+  margin-top: 8px;
   padding: 10.8px 32.4px;
   width: 100%;
   opacity: 0.2;
@@ -475,9 +480,13 @@ canvas {
   border-radius: unset;
 }
 #main-screen-container:-webkit-full-screen #touch-keys {
+  top: auto;
+  margin-top: 0;
   bottom: 0;
 }
 #main-screen-container:fullscreen #touch-keys {
+  top: auto;
+  margin-top: 0;
   bottom: 0;
 }
 
@@ -536,36 +545,21 @@ canvas {
     opacity: 0.9;
   }
   #main-screen-container {
-    width: min(720px, 95vw, calc((100vh - 250px) * 1.5));
+    width: min(720px, 95vw, calc((100vh - 240px) * 1.5));
   }
 }
-@media (pointer: coarse) and (min-width: 769px) {
-  #permanent-key-info-container {
-    display: flex;
-  }
-  #touch-keys {
-    display: none;
-  }
-  #main-screen-container {
-    width: min(720px, 95vw, calc((100vh - 210px) * 1.5));
-    margin-bottom: 0;
-  }
-}
-@media (pointer: coarse) and (orientation: landscape) and (max-width: 425px) {
+@media (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
   body {
-    background: url("../assets/img/desert-bg3.png") center/cover no-repeat !important;
     gap: unset;
   }
-  h1 {
+  h1,
+  #permanent-key-info-container {
     display: none;
   }
   #main-screen-container {
-    background: transparent !important;
-    border-radius: unset;
+    width: min(100vw, calc((100vh - 78px) * 1.5));
   }
   canvas {
-    height: 100vh !important;
-    width: 100% !important;
     border-radius: unset;
     box-shadow: unset !important;
   }
@@ -573,7 +567,8 @@ canvas {
     border-radius: unset;
   }
   #touch-keys {
-    bottom: 0;
+    margin-top: 2px;
+    padding: 2px 16px;
   }
 }
 .d-none {
@@ -631,22 +626,29 @@ Footer / Impressum link
 ---------------------------------------------------*/
 #site-footer {
   position: fixed;
-  bottom: 6px;
-  right: 12px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
   font-family: "boogaloo", Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
 
 #site-footer a {
-  color: #ff7f11;
-  font-size: 17px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 10px;
+  border: solid 2px #a0220a;
+  background: linear-gradient(to bottom, #ffc521, #ef8b10);
+  color: #a0220a;
+  font-size: 18px;
   text-decoration: none;
+  box-shadow: 0px 1px 4px 2px rgba(255, 197, 33, 0.3);
+  transition: all 250ms ease-in-out;
 }
 
 #site-footer a:hover {
-  text-decoration: underline;
+  background: linear-gradient(to bottom, #ef8b10, #ffc521);
   cursor: pointer;
 }
 

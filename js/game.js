@@ -111,6 +111,15 @@ function restartGame() {
 
 
 /**
+ * Returns to the main menu (start screen) by reloading the page.
+ * Sound settings persist via local storage.
+ */
+function backToMenu() {
+    window.location.reload();
+}
+
+
+/**
  * Removes the end screen (either "game lost" or "game won" screen).
  * @param {string} endScreenId - The id of the end screen element to be removed.
  */
