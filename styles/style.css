@@ -627,8 +627,7 @@ Footer / Impressum link
 #site-footer {
   position: fixed;
   bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 12px;
   z-index: 5;
   font-family: "boogaloo", Arial, Helvetica, sans-serif;
   font-size: 15px;
