@@ -310,14 +310,22 @@ canvas {
 
 #touch-keys {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  position: absolute;
-  top: 100%;
-  margin-top: 8px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   padding: 10.8px 32.4px;
-  width: 100%;
-  opacity: 0.2;
+  width: 100vw;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+#touch-keys.full-opacity {
+  opacity: 0.9 !important;
+}
+#touch-keys:not(.full-opacity) .touch-key {
+  pointer-events: none;
 }
 #touch-keys div {
   display: flex;
@@ -340,6 +348,7 @@ canvas {
   z-index: -1;
   opacity: 0;
   cursor: pointer;
+  pointer-events: auto;
 }
 .touch-key img:not(.key-bottle) {
   width: 33.33%;
@@ -480,13 +489,9 @@ canvas {
   border-radius: unset;
 }
 #main-screen-container:-webkit-full-screen #touch-keys {
-  top: auto;
-  margin-top: 0;
   bottom: 0;
 }
 #main-screen-container:fullscreen #touch-keys {
-  top: auto;
-  margin-top: 0;
   bottom: 0;
 }
 
@@ -541,11 +546,8 @@ canvas {
   .desktop-only {
     display: none !important;
   }
-  #touch-keys {
-    opacity: 0.9;
-  }
   #main-screen-container {
-    width: min(720px, 95vw, calc((100vh - 240px) * 1.5));
+    width: min(720px, 95vw, calc((100vh - 160px) * 1.5));
   }
 }
 @media (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
@@ -557,7 +559,7 @@ canvas {
     display: none;
   }
   #main-screen-container {
-    width: min(100vw, calc((100vh - 78px) * 1.5));
+    width: min(100vw, calc(100vh * 1.5));
   }
   canvas {
     border-radius: unset;
@@ -567,8 +569,7 @@ canvas {
     border-radius: unset;
   }
   #touch-keys {
-    margin-top: 2px;
-    padding: 2px 16px;
+    padding: 8px 16px;
   }
 }
 .d-none {
