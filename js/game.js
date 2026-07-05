@@ -60,6 +60,8 @@ async function showLoader() {
  * Removes the start screen elements to hide the start screen.
  */
 function removeStartScreen() {
+    document.body.classList.remove('menu-scroll'); // disable start-menu scrolling once the game begins
+    window.scrollTo(0, 0);
     removeElement('play-btn');
     removeElement('site-footer');
     removeOpacity('play-btn-screen');

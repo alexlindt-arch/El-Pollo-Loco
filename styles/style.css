@@ -48,7 +48,7 @@ h1 {
 
 #main-screen-container {
   position: relative;
-  width: min(720px, 95vw, calc((100vh - 210px) * 1.5));
+  width: min(720px, 95vw, calc((100vh - 240px) * 1.5));
 }
 
 canvas {
@@ -374,8 +374,8 @@ canvas {
   flex-wrap: nowrap;
   white-space: nowrap;
   gap: 1.1em;
-  width: min(684px, 95vw, calc((100vh - 210px) * 1.5));
-  font-size: clamp(10px, calc(min(684px, 95vw, (100vh - 210px) * 1.5) / 30), 24px);
+  width: min(684px, 95vw, calc((100vh - 240px) * 1.5));
+  font-size: clamp(10px, calc(min(684px, 95vw, (100vh - 240px) * 1.5) / 30), 24px);
   background-color: rgba(255, 197, 33, 0.4);
   padding: 10px;
   border-radius: 10px;
@@ -622,13 +622,29 @@ Rotate-device overlay (portrait warning)
   }
 }
 
+/* Scrollable start menu (only before the game starts) */
+body.menu-scroll {
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+body.menu-scroll #site-footer {
+  position: static;
+  margin: 32px 0 48px;
+}
+
 /*--------------------------------------------------
 Footer / Impressum link
 ---------------------------------------------------*/
 #site-footer {
   position: fixed;
   bottom: 8px;
-  right: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
   z-index: 5;
   font-family: "boogaloo", Arial, Helvetica, sans-serif;
   font-size: 15px;
